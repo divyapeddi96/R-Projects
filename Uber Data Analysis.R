@@ -15,3 +15,9 @@ july <- read.csv("C:/Users/divya/OneDrive/Desktop/DIVYA- PERSONAL/Projects/Uber-
 aug <- read.csv("C:/Users/divya/OneDrive/Desktop/DIVYA- PERSONAL/Projects/Uber-dataset/New folder/uber-raw-data-aug14.csv")
 sept <- read.csv("C:/Users/divya/OneDrive/Desktop/DIVYA- PERSONAL/Projects/Uber-dataset/New folder/uber-raw-data-sep14.csv")
 
+# Combine data
+data <- rbind(apr, may, june, july, aug, sept)
+cat("The dimensions of the data are",dim(data))
+
+# Print first 6 rows
+head(data)
