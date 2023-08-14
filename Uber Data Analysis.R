@@ -21,3 +21,25 @@ cat("The dimensions of the data are",dim(data))
 
 # Print first 6 rows
 head(data)
+
+# Create a POSIXct object for a specific date and time
+data$Date.Time <- as.POSIXct(data$Date.Time, format ="%m/%d/%Y %H:%M:%OS")
+
+# Extract Components
+date <- as.Date(data$Date.Time)
+head(data)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
