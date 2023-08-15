@@ -39,8 +39,9 @@ data$time_level <- cut(data$hour,breaks =c(0,12,17,24),labels = c("Morning","Aft
 tail(data)
 
 # Plotting which part of the day has most bookings
-ggplot(data, aes(x = time_level, fill = "yellow")) +
-  geom_bar(stat = "count", position = "dodge")
+ggplot(data, aes(x = time_level, fill = "#B19CD9"))+         
+  geom_bar(stat = "count", position = "dodge") +
+scale_fill_identity()
 
 # Calculate the total number of pick ups
 monthly_pickups <- data %>%
