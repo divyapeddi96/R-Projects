@@ -1,3 +1,5 @@
+# UBER DATA ANALYSIS IN R
+
 # Adding Libraries
 library(ggplot2)
 library(ggthemes)
@@ -26,8 +28,54 @@ head(data)
 data$Date.Time <- as.POSIXct(data$Date.Time, format ="%m/%d/%Y %H:%M:%OS")
 
 # Extract Components
-date <- as.Date(data$Date.Time)
-head(data)
+data$date <- as.Date(data$Date.Time)
+data$month <- format(data$date,"%m")
+data$time <- format(data$Date.Time, format = "%H:%M:%S")
+data$time <- hms(data$time) # Convert character time to hms format
+data$hour = hour(data$time) # Extract hour numerically
+
+# Assign levels for time levels as parts of day
+data$time_level <- cut(data$hour,breaks =c(0,12,17,24),labels = c("Morning","Afternoon","Evening"),include.lowest = T)
+tail(data)
+
+# Plotting which part of the day has most bookings
+ggplot(data, aes(x = time_level, fill = "yellow")) +
+  geom_bar(stat = "count", position = "dodge")
+
+# Calculate the total number of pick ups
+monthly_pickups <- data %>%
+  group_by(month) %>%
+  summarise(total_pickups = n()) %>%
+  arrange(month)
+
+# Convert the monthly_pickups (char) into numeric 
+# This is used later for line plot as it can't join char points 
+monthly_pickups$month <- as.numeric(monthly_pickups$month)
+
+# Create a trend line plot showing pickup trends by month
+ggplot(monthly_pickups, aes(x = month, y = total_pickups)) +
+  geom_point(color = "blue") +
+geom_line(color = "red")+
+  labs(title = "Trend of Monthly Pickups",
+       x = "Month",
+       y = "Total Pickups")+
+  xlim(4, 9)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
