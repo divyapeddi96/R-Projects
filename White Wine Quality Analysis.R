@@ -17,7 +17,7 @@ library(MASS)
 library(psych)
 
 # Reading dataset
-WhiteWine = read.csv("whitewines.csv")
+WhiteWine = read.csv("C:\\Users\\divya\\OneDrive\\Desktop\\Projects\\winequality-white.csv", sep = ";")
 
 # Summary of data
 head(WhiteWine)
